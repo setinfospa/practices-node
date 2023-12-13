@@ -1,0 +1,22 @@
+version: '3.1'
+services:
+  development:
+    build:
+      context: .
+      target: development
+      dockerfile: Dockerfile
+    image: practices/inacap:development2
+    container_name: practices-inacap-development-2
+    volumes:
+      - ./:/usr/src/app
+    ports:
+      - 3002:3000
+  production:
+    build:
+      context: .
+      target: production
+      dockerfile: Dockerfile
+    image: practices/inacap:production2
+    container_name: practices-inacap-production-2
+    ports:
+      - 3001:3000
