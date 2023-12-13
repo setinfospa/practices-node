@@ -19,6 +19,18 @@ app.get('/todos/:id', async (req, res) => {
 	}
 });
 
+app.delete('/todos/:id', async (req, res) => {
+	try {
+		const isDeleted = await new Todo().deleteById(req.params.id);
+		if (!isDeleted) {
+			res.json({ msg: 'Todo not found' });
+		}
+		res.json({ msg: 'Todo deleted successfully' });
+	} catch (error) {
+		res.json({ msg: error });
+	}
+});
+
 app.listen(PORT, () => {
 	console.log(`App listening on port ${PORT}!`);
 });
